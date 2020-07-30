@@ -3,9 +3,8 @@ import os
 
 from django.core.management.commands import runserver
 
-from ledypi_remote.Home.views import FV
+from Home.views import FV
 
-global FBC, ADDITIONAL_SETTINGS
 
 django_logger = logging.getLogger("django_logger")
 
@@ -25,7 +24,6 @@ class Command(runserver.Command):
                             help='If to start in debug mode')
 
     def handle(self, *args, **options):
-        global FBC, ADDITIONAL_SETTINGS
         if os.environ.get('RUN_MAIN') != 'true':
             if options['debug']:
                 django_logger.setLevel(logging.DEBUG)
