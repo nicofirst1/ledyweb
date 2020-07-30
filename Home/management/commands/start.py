@@ -1,13 +1,14 @@
+import logging
 import os
+
 from django.core.management.commands import runserver
 
-from logging import getLogger
-
-from ledypi_remote.Home.views import init_firebasae
+from ledypi_remote.Home.views import tmp
 
 global FBC, ADDITIONAL_SETTINGS
 
-django_logger=getLogger("django_logger")
+django_logger = logging.getLogger("django_logger")
+
 
 class Command(runserver.Command):
     help = 'Displays current time'
@@ -20,13 +21,16 @@ class Command(runserver.Command):
         parser.add_argument('--databaseURL', type=str, nargs='?', default="https://ledypie.firebaseio.com/",
                             help='The Firebase database url')
 
-        parser.add_argument('--debug', nargs='?',
+        parser.add_argument('--debug', nargs='?', const=True,
                             help='If to start in debug mode')
 
     def handle(self, *args, **options):
         global FBC, ADDITIONAL_SETTINGS
         if os.environ.get('RUN_MAIN') != 'true':
-            init_firebasae(options)
-            django_logger.info("Initialized firebase")
-        super(Command, self).handle(*args, **options)
+            if options['debug']:
+                django_logger.setLevel(logging.DEBUG)
 
+            tmp.init_firebasae(options)
+            django_logger.info("Initialized firebase")
+
+        super(Command, self).handle(*args, **options)
