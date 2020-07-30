@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEDyPi</title>
+    <!-- Font Awesome -->
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        .bordered-row {
+            border-radius: 5px;
+        {#border: 0.5px solid;#} margin: 10px;
+        }
+
+        .toggle-group {
+            width: 90px;
+        }
+
+        .card {
+            border-radius: 5px;
+            border: 0.5px solid;
+            margin-bottom: 5px;
+        }
+
+        input[type='range'] {
+            background: transparent;
+        }
+
+        /*Chrome*/
+        @media screen and (-webkit-min-device-pixel-ratio: 0) {
+
+            input.red-s[type='range']::-webkit-slider-thumb {
+                background: red;
+
+            }
+
+            input.green-s[type='range']::-webkit-slider-thumb {
+                background: green;
+
+            }
+
+            input.blue-s[type='range']::-webkit-slider-thumb {
+                background: blue;
+
+            }
+
+        }
+
+        /** FF*/
+        input.red-s[type='range']::-moz-range-progress {
+            background: red;
+
+        }
+
+        input.green-s[type='range']::-moz-range-progress {
+            background: green;
+
+        }
+
+        input.blue-s[type='range']::-moz-range-progress {
+            background: blue;
+
+        }
+        input[type="range"]::-moz-range-progress {
+            background-color: grey;
+        }
+
+        {#input.red-s[type="range"]::-moz-range-track {#}
+        {#    background-color: red;#}
+        {#}#}
+
+        .back {
+            opacity: 0.5;
+            background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+        }
+
+    </style>
+    <style>
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider-1 {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        .slider-1:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+        input:checked + .slider-1 {
+            background-color: green;
+        }
+
+        input:focus + .slider-1 {
+            box-shadow: 0 0 1px green;
+        }
+
+        input:checked + .slider-1:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .slider-1.round {
+            border-radius: 34px;
+        }
+
+        .slider-1.round:before {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul class="nav justify-content-end">
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'index' %}">Home</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link disabled" href="javascript:;"><h4>LEDyPi</h4></a>
+        </li>
+
+    </ul>
+    <form class="my-form" method="get" action="{% url 'get_form_values' %}">
+        <div class="row justify-content-center">
+
+            {#        <div class="col-md-3"></div>#}
+            <div class="col-md-8 col-sm-12 bordered-row">
+                <div class=" card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label></label>
+                                <select data-url="{% url 'render_settings' %}" name="setting_name" id="pattern-picker"
+                                        class="form-control-sm">
+                                    <option value="">-----</option>
+                                    {% for option in drop_down %}
+                                        <option value="{{ option.Name }}">{{ option.Name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-7">
+                                <label>Delay: </label><small>{{ sliders.delay.current }}</small>
+                                <input type="range"
+                                       class="slider custom-range form-control-sm pull-right"
+                                       value="{{ sliders.delay.current }}" min="{{ sliders.delay.min }}"
+                                       max="{{ sliders.delay.max }}"
+                                       id="delaySlider"
+                                       name="delaySlider"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">RGBA Settings</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            <div class="form-check pl-0">
+                                <label for="random" class="form-check-label">Random</label>
+                                <label class="switch">
+                                    <input class="form-control-sm" name="random" id="random" type="checkbox" {% if random %}checked{% endif %}>
+                                    <span class="slider-1 round"></span>
+                                </label>
+                                {#                                <input style="width: 110%" data-size="xs" id="random"#}
+                                {#                                       class="form-check-input"#}
+                                {#                                       type="checkbox"#}
+                                {#                                       name="random"#}
+                                {#                                       {% if random %}checked{% endif %}#}
+                                {#                                       data-toggle="toggle"#}
+                                {#                                       data-onstyle="success">#}
+                            </div>
+                        </h6>
+                        <div class="card-text">
+                            <p class="card-subtitle mb-2 text-muted">RGB Values</p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>R: </label><small>{{ sliders.red.current }}</small>
+                                    <input type="range"
+                                           name="red"
+                                           class="slider red-s custom-range form-control-sm pull-right success"
+                                           value="{{ sliders.red.current }}"
+                                           min="{{ sliders.red.min }}"
+                                           max="{{ sliders.red.max }}"
+                                           id="customRange2">
+                                </div>
+                                <div class="col-md-12">
+                                    <label>G: </label><small>{{ sliders.green.current }}</small>
+                                    <input type="range"
+                                           name="green"
+                                           class="slider green-s custom-range form-control-sm pull-right"
+                                           value="{{ sliders.green.current }}" min="{{ sliders.green.min }}"
+                                           max="{{ sliders.green.max }}"
+                                           id="customRange2">
+                                </div>
+                                <div class="col-md-12">
+                                    <label>B: </label><small>{{ sliders.blue.current }}</small>
+                                    <input type="range"
+                                           name="blue"
+                                           class="slider blue-s custom-range form-control-sm pull-right"
+                                           value="{{ sliders.blue.current }}"
+                                           min="{{ sliders.blue.min }}"
+                                           max="{{ sliders.blue.max }}"
+                                           id="customRange2">
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Alpha: </label><small>{{ sliders.alpha.current }}</small>
+                                    <input type="range"
+                                           name="alpha"
+                                           class="slider custom-range form-control-sm pull-right"
+                                           value="{{ sliders.alpha.current }}" min="{{ sliders.alpha.min }}"
+                                           max="{{ sliders.alpha.max }}"
+                                           id="customRange2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card settings"></div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text">
+                            Lorem Ispem Text here
+                        </div>
+                        <a href="#" class="card-link btn btn-outline-success"><i class="fa fa-github"> GitHub</i></a>
+                        <a href="#" class="card-link btn btn-outline-primary"><i class="fa fa-linkedin"></i>
+                            LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+{% block main %}{% endblock %}
+{% include 'home/scripts.html' %}
+<script>
+    function send_value(url, values, is_setting = false) {
+        {#url += `?${values.name}=${values.value}`#}
+        $.ajax({
+            url: url,
+            type: 'get',
+            success: function (response) {
+                if (is_setting) {
+                    $('.settings').html(response.value)
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<div class="card-body">
+    <h5 class="card-title">{{ Name }}</h5>
+    <div class="card-text">
+        <div class="row ">
+            {% for input in inputs %}
+                <div class="col-md-12">
+                    <label>{{ input.label }}: </label>
+                    {% if input.type == "slider" %}
+                        <small>{{ input.initial_value }}</small>
+                        <input type="range"
+                               class="slider custom-range form-control-sm pull-right success"
+                               value="{{ input.initial_value }}"
+                               min="{{ input.min }}"
+                               max="{{ input.max }}"
+                               name="{{ input.label }}"
+                               id="{{ input.label }}"
+                        >
+                    {% elif input.type == "switch" %}
+                        <label class="switch">
+                            <input class="form-control-sm"
+                                   name="{{ input.label }}"
+                                   id="{{ input.label }}"
+                                   type="checkbox"
+                                   {% if input.initial_value == 'on' %}checked{% endif %}
+                            >
+                            <span class="slider-1 round"></span>
+                        </label>
+                    {% else %}
+                        <input type="text" class="form-control-sm" name="{{ input.label }}" id="{{ input.label }}">
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+{% include 'home/scripts.html' %}
