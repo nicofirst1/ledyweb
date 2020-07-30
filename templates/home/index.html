@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>LEDyPi</title>
+    <title>LedyPi</title>
     <!-- Font Awesome -->
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
@@ -167,7 +167,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label></label>
-                                <select data-url="{% url 'render_settings' %}" name="setting_name" id="pattern-picker"
+                                <select data-url="{% url 'render_settings' %}" name="pattern" id="pattern-picker"
                                         class="form-control-sm">
                                     <option value="">{{ settings.cur_pattern }}</option>
                                     {% for option in drop_down %}

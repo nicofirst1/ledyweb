@@ -3,14 +3,13 @@ import os
 
 from django.core.management.commands import runserver
 
-from Home.views import FV
-
+from Home.fire_view import FV
 
 django_logger = logging.getLogger("django_logger")
 
 
 class Command(runserver.Command):
-    help = 'Displays current time'
+    help = 'Start Firebase connection '
 
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
@@ -24,11 +23,11 @@ class Command(runserver.Command):
                             help='If to start in debug mode')
 
     def handle(self, *args, **options):
-        if os.environ.get('RUN_MAIN') != 'true':
+        if os.environ.get('RUN_MAIN') == 'true':
             if options['debug']:
                 django_logger.setLevel(logging.DEBUG)
 
-            FV.init_firebasae(options)
+            FV.init_firebase(options)
             django_logger.info("Initialized firebase")
 
         super(Command, self).handle(*args, **options)

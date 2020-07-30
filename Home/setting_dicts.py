@@ -6,7 +6,6 @@ def parse_additional_settings(pattern_attributes):
     """
     settings = []
     for pt, attrs in pattern_attributes.items():
-        if len(attrs) == 0: continue
 
         st = dict(Name=pt, inputs=[])
 
@@ -33,17 +32,17 @@ def parse_additional_settings(pattern_attributes):
     return settings
 
 
-def parse_settings(fbc):
+def parse_settings(local_db):
     """
     Define the standard setting dictionary
     :param fbc: FireBaseConnector
     :return: dict
     """
     # get required values
-    rate = fbc.rate
-    random_colors = fbc.random_colors
-    cur_pattern = fbc.pattern_choice
-    rgba = fbc.rgba
+    rate = local_db['rate']
+    random_colors = local_db['RGBA']['random']
+    cur_pattern = local_db['cur_pattern']
+    rgba = local_db['RGBA']
 
     # build settings
     settings = dict(
@@ -57,22 +56,22 @@ def parse_settings(fbc):
         red=dict(
             min=0,
             max=255,
-            current=rgba.r,
+            current=rgba['r'],
         ),
         green=dict(
             min=0,
             max=255,
-            current=rgba.g,
+            current=rgba['g'],
         ),
         blue=dict(
             min=0,
             max=255,
-            current=rgba.b,
+            current=rgba['b'],
         ),
         alpha=dict(
             min=0,
             max=255,
-            current=rgba.a,
+            current=rgba['a'],
         ),
     )
     print(settings)

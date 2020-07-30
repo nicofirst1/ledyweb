@@ -6,38 +6,11 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from getenv import env
 
-from firebase.connector import FireBaseConnector
-from .setting_dicts import parse_additional_settings, parse_settings
+from .fire_view import FV
 
 django_logger = getLogger('django_logger')
 
 
-class FireView:
-
-    def __init__(self):
-        self.fbc = None
-
-    def init_firebasae(self, options):
-        fbc = FireBaseConnector(credential_path=options['credential_path'], database_url=options['databaseURL'],
-                                debug=options['debug'])
-        additional_settings = parse_additional_settings(fbc.init_attributes())
-        settings = parse_settings(fbc)
-        os.environ['ADDITIONAL_SETTINGS'] = str(additional_settings)
-        os.environ['SETTINGS'] = str(settings)
-
-        # start firebase
-        fbc.start()
-
-        self.fbc = fbc
-
-    def process_request(self, request):
-        values = request.GET.dict()
-        print(f"Values recived : {values}")
-        a=1
-
-
-
-FV = FireView()
 
 
 def get_val_from_env(key_name: str):
@@ -49,7 +22,6 @@ def index(request):
     additional_settings = get_val_from_env('ADDITIONAL_SETTINGS')
     settings = get_val_from_env('SETTINGS')
 
-    #additional_settings = dict(additional_settings)
     settings = dict(settings)
 
     context = {
@@ -62,12 +34,11 @@ def index(request):
 def render_setting(request):
     django_logger.debug(f"Request in render_settings:\n{request.GET}")
 
-    setting_name = request.GET.get('setting_name', '')
+    pattern = request.GET.get('pattern', '')
     additional_settings = get_val_from_env('ADDITIONAL_SETTINGS')
 
-
     for setting in additional_settings:
-        if setting['Name'].__contains__(setting_name):
+        if setting['Name'].__contains__(pattern):
             setting_html = render_to_string('home/setting_form.html', setting)
             response = {
                 'success': True,
