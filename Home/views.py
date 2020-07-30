@@ -12,7 +12,7 @@ from .setting_dicts import parse_additional_settings, parse_settings
 django_logger = getLogger('django_logger')
 
 
-class TMP:
+class FireView:
 
     def __init__(self):
         self.fbc = None
@@ -37,7 +37,7 @@ class TMP:
 
 
 
-tmp = TMP()
+FV = FireView()
 
 
 def get_val_from_env(key_name: str):
@@ -80,7 +80,7 @@ def render_setting(request):
 def get_form_values(request):
     values = request.GET.dict()
     django_logger.debug(f"Request in get_form_values:\n{values}")
-    tmp.process_request(request)
+    FV.process_request(request)
 
     # Your code here
     response = {

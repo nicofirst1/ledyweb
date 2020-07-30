@@ -3,7 +3,7 @@ import os
 
 from django.core.management.commands import runserver
 
-from ledypi_remote.Home.views import tmp
+from ledypi_remote.Home.views import FV
 
 global FBC, ADDITIONAL_SETTINGS
 
@@ -30,7 +30,7 @@ class Command(runserver.Command):
             if options['debug']:
                 django_logger.setLevel(logging.DEBUG)
 
-            tmp.init_firebasae(options)
+            FV.init_firebasae(options)
             django_logger.info("Initialized firebase")
 
         super(Command, self).handle(*args, **options)
