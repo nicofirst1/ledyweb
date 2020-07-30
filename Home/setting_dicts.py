@@ -1,55 +1,34 @@
-drop_down = [
-    {
-        'Name': 'Metior',
-        'inputs': [
-            {
-                'type': 'slider',
-                'label': 'size',
-                'initial_value': 0,
-                'min': 0,
-                'max': 100
-            },
-            {
-                'type': 'switch',
-                'label': 'random decay',
-                'initial_value': 'on'
-            },
-            {
-                'type': 'string',
-                'label': 'Str Input',
-                'initial_value': 'Some string '
-            },
-        ]
-    },
-    {
-        'Name': 'Fading',
-        'inputs': [
-            {
-                'type': 'slider',
-                'label': 'points',
-                'initial_value': 0,
-                'min': 0,
-                'max': 100
-            },
-            {
-                'type': 'slider',
-                'label': 'delay start',
-                'initial_value': 0,
-                'min': 0,
-                'max': 100
-            },
-            {
-                'type': 'slider',
-                'label': 'delay end',
-                'initial_value': 0,
-                'min': 0,
-                'max': 100
-            },
 
-        ]
-    },
-    # please populate more over here
-]
+
+def make_drop_down(pattern_attributes):
+    settings = []
+    for pt, attrs in pattern_attributes.items():
+        if len(attrs) == 0: continue
+
+        st = dict(Name=pt, inputs=[])
+
+        for k, v in attrs.items():
+            inp = {}
+            if isinstance(v, int):
+                inp['type'] = 'slider'
+                inp['max'] = 100
+                inp['min'] = 0
+
+            elif isinstance(v, str):
+                inp['type'] = "string"
+
+            elif isinstance(v, bool):
+                inp['type'] = 'switch'
+
+            inp['initial_value'] = v
+            inp['label'] = k
+
+            st['inputs'].append(inp)
+
+        settings.append(st)
+    return settings
+
+
 random = True  # set values as per you want below if random
 slider_values = {
     'delay': {

@@ -1,10 +1,21 @@
+import os
+
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.template.loader import render_to_string
 from getenv import env
-import os
-from .setting_dicts import drop_down, random, slider_values
 
+from firebase.connector import FireBaseConnector
+from .setting_dicts import random, slider_values, make_drop_down
+
+
+def init_firebasae(options):
+    FBC = FireBaseConnector(credential_path=options['credential_path'], database_url=options['databaseURL'],
+                            debug=options['debug'])
+    ADDITIONAL_SETTINGS = make_drop_down(FBC.init_attributes())
+    os.environ['ADDITIONAL_SETTINGS'] = str(ADDITIONAL_SETTINGS)
+
+    FBC.start()
 
 def get_val_from_env(key_name: str):
     return env(key_name)
@@ -16,12 +27,12 @@ def get_metior_value():
 
 def index(request):
     # if you want to get environment variable
-    # env_variable = get_val_from_env('my_env')
-    # print(env_variable)
+    ADDITIONAL_SETTINGS = get_val_from_env('ADDITIONAL_SETTINGS')
+    print(ADDITIONAL_SETTINGS)
 
     context = {
         'sliders': slider_values,
-        "drop_down": drop_down,
+        "drop_down": ADDITIONAL_SETTINGS,
         'random': random,
     }
     return render(request, 'home/index.html', context=context)
@@ -30,8 +41,10 @@ def index(request):
 def render_setting(request):
     print(request.GET)
     setting_name = request.GET.get('setting_name', '')
+    ADDITIONAL_SETTINGS = get_val_from_env('ADDITIONAL_SETTINGS')
+
     setting_html = ''
-    for setting in drop_down:
+    for setting in ADDITIONAL_SETTINGS:
         if setting['Name'].__contains__(setting_name):
             setting_html = render_to_string('home/setting_form.html', setting)
             response = {
