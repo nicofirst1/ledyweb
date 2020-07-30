@@ -1,6 +1,9 @@
-
-
-def make_drop_down(pattern_attributes):
+def parse_additional_settings(pattern_attributes):
+    """
+    Create a dropdown menu from the attribute list in the firebase
+    :param pattern_attributes: dictiornay as returned by the FireBaseConnector.init_attributes
+    :return: str, structure to build the menu
+    """
     settings = []
     for pt, attrs in pattern_attributes.items():
         if len(attrs) == 0: continue
@@ -9,16 +12,17 @@ def make_drop_down(pattern_attributes):
 
         for k, v in attrs.items():
             inp = {}
-            if isinstance(v, int):
+
+            if isinstance(v, bool):
+                inp['type'] = 'switch'
+
+            elif isinstance(v, int):
                 inp['type'] = 'slider'
                 inp['max'] = 100
                 inp['min'] = 0
 
             elif isinstance(v, str):
                 inp['type'] = "string"
-
-            elif isinstance(v, bool):
-                inp['type'] = 'switch'
 
             inp['initial_value'] = v
             inp['label'] = k
@@ -29,32 +33,49 @@ def make_drop_down(pattern_attributes):
     return settings
 
 
-random = True  # set values as per you want below if random
-slider_values = {
-    'delay': {
-        'min': 0,
-        'max': 100,
-        'current': 23
-    },
-    'red': {
-        'min': 0,
-        'max': 255,
-        'current': 23
-    },
-    'green': {
-        'min': 0,
-        'max': 255,
-        'current': 23
-    },
-    'blue': {
-        'min': 0,
-        'max': 255,
-        'current': 40
+def parse_settings(fbc):
+    """
+    Define the standard setting dictionary
+    :param fbc: FireBaseConnector
+    :return: dict
+    """
+    # get required values
+    rate = fbc.rate
+    random_colors = fbc.random_colors
+    cur_pattern = fbc.pattern_choice
+    rgba = fbc.rgba
 
-    },
-    'alpha': {
-        'min': 0,
-        'max': 255,
-        'current': 23
-    },
-}
+    # build settings
+    settings = dict(
+        cur_pattern=cur_pattern,
+        rate=dict(
+            min=0,
+            max=250,
+            current=rate,
+        ),
+        random_colors=random_colors,
+        red=dict(
+            min=0,
+            max=255,
+            current=rgba.r,
+        ),
+        green=dict(
+            min=0,
+            max=255,
+            current=rgba.g,
+        ),
+        blue=dict(
+            min=0,
+            max=255,
+            current=rgba.b,
+        ),
+        alpha=dict(
+            min=0,
+            max=255,
+            current=rgba.a,
+        ),
+    )
+    print(settings)
+    return settings
+
+

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>LEDyPi</title>
@@ -169,20 +169,20 @@
                                 <label></label>
                                 <select data-url="{% url 'render_settings' %}" name="setting_name" id="pattern-picker"
                                         class="form-control-sm">
-                                    <option value="">-----</option>
+                                    <option value="">{{ settings.cur_pattern }}</option>
                                     {% for option in drop_down %}
                                         <option value="{{ option.Name }}">{{ option.Name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="col-md-7">
-                                <label>Delay: </label><small>{{ sliders.delay.current }}</small>
+                                <label>Delay: </label><small>{{ settings.rate.current }}</small>
                                 <input type="range"
                                        class="slider custom-range form-control-sm pull-right"
-                                       value="{{ sliders.delay.current }}" min="{{ sliders.delay.min }}"
-                                       max="{{ sliders.delay.max }}"
-                                       id="delaySlider"
-                                       name="delaySlider"
+                                       value="{{ settings.rate.current }}" min="{{ settings.rate.min }}"
+                                       max="{{ settings.rate.max }}"
+                                       id="rateSlider"
+                                       name="rateSlider"
                                 >
                             </div>
                         </div>
@@ -195,58 +195,53 @@
                             <div class="form-check pl-0">
                                 <label for="random" class="form-check-label">Random</label>
                                 <label class="switch">
-                                    <input class="form-control-sm" name="random" id="random" type="checkbox" {% if random %}checked{% endif %}>
+                                    <input class="form-control-sm" name="random" id="random" type="checkbox"
+                                           {% if settings.random_colors == 'True' %}checked{% endif %}>
                                     <span class="slider-1 round"></span>
                                 </label>
-                                {#                                <input style="width: 110%" data-size="xs" id="random"#}
-                                {#                                       class="form-check-input"#}
-                                {#                                       type="checkbox"#}
-                                {#                                       name="random"#}
-                                {#                                       {% if random %}checked{% endif %}#}
-                                {#                                       data-toggle="toggle"#}
-                                {#                                       data-onstyle="success">#}
+
                             </div>
                         </h6>
                         <div class="card-text">
                             <p class="card-subtitle mb-2 text-muted">RGB Values</p>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label>R: </label><small>{{ sliders.red.current }}</small>
+                                    <label>R: </label><small>{{ settings.red.current }}</small>
                                     <input type="range"
                                            name="red"
                                            class="slider red-s custom-range form-control-sm pull-right success"
-                                           value="{{ sliders.red.current }}"
-                                           min="{{ sliders.red.min }}"
-                                           max="{{ sliders.red.max }}"
-                                           id="customRange2">
+                                           value="{{ settings.red.current }}"
+                                           min="{{ settings.red.min }}"
+                                           max="{{ settings.red.max }}"
+                                           id="rSlider">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>G: </label><small>{{ sliders.green.current }}</small>
+                                    <label>G: </label><small>{{ settings.green.current }}</small>
                                     <input type="range"
                                            name="green"
                                            class="slider green-s custom-range form-control-sm pull-right"
-                                           value="{{ sliders.green.current }}" min="{{ sliders.green.min }}"
-                                           max="{{ sliders.green.max }}"
-                                           id="customRange2">
+                                           value="{{ settings.green.current }}" min="{{ settings.green.min }}"
+                                           max="{{ settings.green.max }}"
+                                           id="gSlider">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>B: </label><small>{{ sliders.blue.current }}</small>
+                                    <label>B: </label><small>{{ settings.blue.current }}</small>
                                     <input type="range"
                                            name="blue"
                                            class="slider blue-s custom-range form-control-sm pull-right"
-                                           value="{{ sliders.blue.current }}"
-                                           min="{{ sliders.blue.min }}"
-                                           max="{{ sliders.blue.max }}"
-                                           id="customRange2">
+                                           value="{{ settings.blue.current }}"
+                                           min="{{ settings.blue.min }}"
+                                           max="{{ settings.blue.max }}"
+                                           id="bSlider">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>Alpha: </label><small>{{ sliders.alpha.current }}</small>
+                                    <label>Alpha: </label><small>{{ settings.alpha.current }}</small>
                                     <input type="range"
                                            name="alpha"
                                            class="slider custom-range form-control-sm pull-right"
-                                           value="{{ sliders.alpha.current }}" min="{{ sliders.alpha.min }}"
-                                           max="{{ sliders.alpha.max }}"
-                                           id="customRange2">
+                                           value="{{ settings.alpha.current }}" min="{{ settings.alpha.min }}"
+                                           max="{{ settings.alpha.max }}"
+                                           id="aSlider">
                                 </div>
                             </div>
                         </div>
