@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -8,142 +9,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <!-- Bootstrap core CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'home/style.css' %}">
+    <link rel="stylesheet" href="{% static 'home/style2.css' %}">
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
           rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <style>
-        .bordered-row {
-            border-radius: 5px;
-        {#border: 0.5px solid;#} margin: 10px;
-        }
 
-        .toggle-group {
-            width: 90px;
-        }
 
-        .card {
-            border-radius: 5px;
-            border: 0.5px solid;
-            margin-bottom: 5px;
-        }
-
-        input[type='range'] {
-            background: transparent;
-        }
-
-        /*Chrome*/
-        @media screen and (-webkit-min-device-pixel-ratio: 0) {
-
-            input.red-s[type='range']::-webkit-slider-thumb {
-                background: red;
-
-            }
-
-            input.green-s[type='range']::-webkit-slider-thumb {
-                background: green;
-
-            }
-
-            input.blue-s[type='range']::-webkit-slider-thumb {
-                background: blue;
-
-            }
-
-        }
-
-        /** FF*/
-        input.red-s[type='range']::-moz-range-progress {
-            background: red;
-
-        }
-
-        input.green-s[type='range']::-moz-range-progress {
-            background: green;
-
-        }
-
-        input.blue-s[type='range']::-moz-range-progress {
-            background: blue;
-
-        }
-        input[type="range"]::-moz-range-progress {
-            background-color: grey;
-        }
-
-        {#input.red-s[type="range"]::-moz-range-track {#}
-        {#    background-color: red;#}
-        {#}#}
-
-        .back {
-            opacity: 0.5;
-            background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
-        }
-
-    </style>
-    <style>
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 60px;
-            height: 34px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider-1 {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        .slider-1:before {
-            position: absolute;
-            content: "";
-            height: 26px;
-            width: 26px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            -webkit-transition: .4s;
-            transition: .4s;
-        }
-
-        input:checked + .slider-1 {
-            background-color: green;
-        }
-
-        input:focus + .slider-1 {
-            box-shadow: 0 0 1px green;
-        }
-
-        input:checked + .slider-1:before {
-            -webkit-transform: translateX(26px);
-            -ms-transform: translateX(26px);
-            transform: translateX(26px);
-        }
-
-        /* Rounded sliders */
-        .slider-1.round {
-            border-radius: 34px;
-        }
-
-        .slider-1.round:before {
-            border-radius: 50%;
-        }
-    </style>
 </head>
 <body>
 <div class="container">
@@ -253,8 +128,8 @@
                         <div class="card-text">
                             Lorem Ispem Text here
                         </div>
-                        <a href="#" class="card-link btn btn-outline-success"><i class="fa fa-github"> GitHub</i></a>
-                        <a href="#" class="card-link btn btn-outline-primary"><i class="fa fa-linkedin"></i>
+                        <a href="https://github.com/nicofirst1" class="card-link btn btn-outline-success"><i class="fa fa-github"> GitHub</i></a>
+                        <a href="https://www.linkedin.com/in/nicol%C3%B2-brandizzi-04091b153/" class="card-link btn btn-outline-primary"><i class="fa fa-linkedin"></i>
                             LinkedIn</a>
                     </div>
                 </div>

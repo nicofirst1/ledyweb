@@ -1,0 +1,64 @@
+.bordered-row {
+    border-radius: 5px;
+    margin: 10px;
+}
+
+
+.toggle-group {
+    width: 90px;
+}
+
+.card {
+    border-radius: 5px;
+    border: 0.5px solid;
+    margin-bottom: 5px;
+}
+
+input[type='range'] {
+    background: transparent;
+}
+
+/*Chrome*/
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+
+    input.red-s[type='range']::-webkit-slider-thumb {
+        background: red;
+
+    }
+
+    input.green-s[type='range']::-webkit-slider-thumb {
+        background: green;
+
+    }
+
+    input.blue-s[type='range']::-webkit-slider-thumb {
+        background: blue;
+
+    }
+
+}
+
+/** FF*/
+input.red-s[type='range']::-moz-range-progress {
+    background: red;
+
+}
+
+input.green-s[type='range']::-moz-range-progress {
+    background: green;
+
+}
+
+input.blue-s[type='range']::-moz-range-progress {
+    background: blue;
+
+}
+
+input[type="range"]::-moz-range-progress {
+    background-color: grey;
+}
+
+.back {
+    opacity: 0.5;
+    background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+}
