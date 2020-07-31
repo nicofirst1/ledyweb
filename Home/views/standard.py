@@ -34,6 +34,8 @@ def index(request):
 def render_setting(request):
     print(f"Request in render_settings:\n{request.GET}")
 
+    FV.process_request(request)
+
     pattern = request.GET.get('cur_pattern', '')
     additional_settings = get_val_from_env('ADDITIONAL_SETTINGS')
     additional_settings = list(additional_settings)
