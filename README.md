@@ -8,6 +8,7 @@ To install the necessary dependencies use:
 ## Usage
 
 Run on the default port (8000) with:
+
 ```python3 manage.py start```
 
 You'll find the webpage on [localhost](http://127.0.0.1:8000)
@@ -24,8 +25,10 @@ to pass any addition arguments set them as environmental variables before runnin
 
  
 # todo
-- fix readme []
+- fix readme [X]
 - fix double call in get_form_values []
 - fix compatibility with controller []
 - fix android app []
+- make additional setting appear on reload (index) [X]
+- []
 - []

@@ -10,6 +10,12 @@
 <script defer>
     $('.form-control-sm').unbind()
     $('.slider').unbind()
+    $('.switch_control').unbind()
+
+    window.onload = (event) => {
+        init_additional_settings()
+        console.log('page is fully loaded');
+    };
 
     $(document).ready(function () {
 
@@ -18,13 +24,13 @@
 
             $('.switch_control').on('change', function (event) {
 
-                thisId= $(this).attr('id')
-                hiddenID=thisId+"_hidden"
+                let thisId = $(this).attr('id')
+                let hiddenID = thisId + "_hidden"
 
                 if ($(this).is(':checked')) {
                     document.getElementById(hiddenID).disabled = true;
-                    $(this).attr('value','true')
-                }else{
+                    $(this).attr('value', 'true')
+                } else {
                     document.getElementById(hiddenID).disabled = false;
 
                 }
@@ -39,6 +45,8 @@
 
             $('.form-control-sm').on('change', function () {
 
+                console.log("form control")
+
                 let inp = $(this)
                 let form = $('.my-form')
                 if (inp.attr('id').includes('cur_pattern')) {
@@ -47,33 +55,33 @@
                     send_value(url, [], true)
                 } else {
                     let url = form.attr('action') + '?' + form.serialize()
-                    console.log(url)
                     send_value(url, [])
                 }
             })
-            $('.slider').on('input', function () {
-                let slider = $(this)
-                let value = slider.val()
-                slider.siblings('small').html(value)
-                let form = $('.my-form')
-                let url = form.attr('action') + '?' + form.serialize()
-                send_value(url, [])
-            })
-
-        }, 100)
 
 
-        function send_value(url, values, is_setting = false) {
-            $.ajax({
-                url: url,
-                type: 'get',
-                success: function (response) {
-                    if (is_setting) {
-                        $('.settings').html(response.value)
-                    }
-                }
-            })
-        }
+        }, 10)
+
 
     })
+
+    function init_additional_settings() {
+        let form = $('.my-form')
+        let url = "render_settings"
+        url += '?' + form.serialize()
+        send_value(url, [], true)
+    }
+
+
+    function send_value(url, values, is_setting = false) {
+        $.ajax({
+            url: url,
+            type: 'get',
+            success: function (response) {
+                if (is_setting) {
+                    $('.settings').html(response.value)
+                }
+            }
+        })
+    }
 </script>
