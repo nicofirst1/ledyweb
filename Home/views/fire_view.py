@@ -1,6 +1,6 @@
 import os
 
-from Home.setting_dicts import parse_settings, parse_additional_settings
+from Home.views.setting_dicts import parse_settings, parse_additional_settings
 from firebase.connector import FireBaseConnector
 
 

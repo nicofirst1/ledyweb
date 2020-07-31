@@ -1,4 +1,3 @@
-import os
 from logging import getLogger
 
 from django.http import JsonResponse
@@ -6,7 +5,7 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from getenv import env
 
-from .fire_view import FV
+from Home.views import FV
 
 django_logger = getLogger('django_logger')
 

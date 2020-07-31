@@ -3,7 +3,7 @@ import os
 
 from django.core.management.commands import runserver
 
-from Home.fire_view import FV
+from Home.views.fire_view import FV
 
 django_logger = logging.getLogger("django_logger")
 
