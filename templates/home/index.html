@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
+
 <head>
     <meta charset="UTF-8">
     <title>LedyPi</title>
@@ -17,9 +18,8 @@
           rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
-
 </head>
+
 <body>
 <div class="container">
     <ul class="nav justify-content-end">
@@ -28,14 +28,14 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link disabled" href="javascript:;"><h4>Ledypi</h4></a>
+            <a class="nav-link disabled" href="javascript:"><h4>Ledypi</h4></a>
         </li>
+
 
     </ul>
     <form class="my-form" method="get" action="{% url 'get_form_values' %}">
         <div class="row justify-content-center">
 
-            {#        <div class="col-md-3"></div>#}
             <div class="col-md-8 col-sm-12 bordered-row">
                 <div class=" card">
                     <div class="card-body">
@@ -142,7 +142,6 @@
 {% include 'home/scripts.html' %}
 <script>
     function send_value(url, values, is_setting = false) {
-        {#url += `?${values.name}=${values.value}`#}
         $.ajax({
             url: url,
             type: 'get',
