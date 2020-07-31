@@ -53,8 +53,7 @@ def get_form_values(request):
     values = request.GET.dict()
     django_logger.debug(f"Request in get_form_values:\n{values}")
     FV.process_request(request)
-    print(request.headers)
-    # Your code here
+
     response = {
         'success': True,
         'value': values,

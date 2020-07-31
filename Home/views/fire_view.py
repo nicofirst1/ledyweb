@@ -49,7 +49,6 @@ class FireView(metaclass=Singleton):
 
     def process_request(self, request):
         values = request.GET.dict()
-        print(f"Values recived : {values}")
         self.fbc.update_db(values)
         self.update_settings()
 
