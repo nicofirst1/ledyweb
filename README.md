@@ -25,3 +25,10 @@ you can write you own code within them
  
  make sure you have <b>python3<b> installed.
  and if any issues please get back to me.
+ 
+# todo
+- fix readme []
+- fix double call in get_form_values []
+- fix compatibility with controller []
+- fix android app []
+- []
