@@ -194,9 +194,10 @@
                             <div class="form-check pl-0">
                                 <label for="random" class="form-check-label">Random</label>
                                 <label class="switch">
-                                    <input class="form-control-sm" name="random" id="random" type="checkbox"
+                                    <input class="switch_control" name="random" id="random" type="checkbox"
                                            {% if settings.random_colors %}checked{% endif %}>
                                     <span class="slider-1 round"></span>
+                                    <input id='random_hidden' type='hidden' value='false' name='random'>
                                 </label>
 
                             </div>

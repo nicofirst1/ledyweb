@@ -13,15 +13,39 @@
 <script defer>
     $('.form-control-sm').unbind()
     $('.slider').unbind()
+
+
+
     $(document).ready(function () {
+
+
         setTimeout(function () {
+
+            $('.switch_control').on('change', function (event) {
+
+                thisId= $(this).attr('id')
+                hiddenID=thisId+"_hidden"
+
+                if ($(this).is(':checked')) {
+                    document.getElementById(hiddenID).disabled = true;
+                    $(this).attr('value','true')
+                }else{
+                    document.getElementById(hiddenID).disabled = false;
+
+                }
+
+                let form = $('.my-form')
+
+                let url = form.attr('action') + '?' + form.serialize()
+                console.log(url)
+                send_value(url, [])
+
+            })
+
             $('.form-control-sm').on('change', function () {
+
                 let inp = $(this)
                 let form = $('.my-form')
-                let values = {
-                    name: inp.attr('name'),
-                    value: inp.val()
-                }
                 if (inp.attr('id').includes('cur_pattern')) {
                     let url = inp.attr('data-url')
                     url += '?' + form.serialize()
@@ -31,7 +55,6 @@
                     console.log(url)
                     send_value(url, [])
                 }
-                {#console.log(url, values)#}
             })
             $('.slider').on('input', function () {
                 let slider = $(this)
@@ -41,6 +64,7 @@
                 let url = form.attr('action') + '?' + form.serialize()
                 send_value(url, [])
             })
+
         }, 100)
 
 
