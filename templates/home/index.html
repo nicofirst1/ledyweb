@@ -22,16 +22,8 @@
 
 <body>
 <div class="container">
-    <ul class="nav justify-content-end">
-        <li class="nav-item">
-            <a class="nav-link active" href="{% url 'index' %}">Home</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link disabled" href="javascript:"><h4>Ledypi</h4></a>
-        </li>
-
-
+    <ul class="nav justify-content-center">
+            <a class="nav-link disabled" ><h1>LedyPi</h1></a>
     </ul>
     <form class="my-form" method="get" action="{% url 'get_form_values' %}">
         <div class="row justify-content-center">
@@ -50,7 +42,7 @@
                                 </select>
                             </div>
                             <div class="col-md-7">
-                                <label>Delay: </label><small>{{ settings.rate.current }}</small>
+                                <label>Delay: </label><small> {{ settings.rate.current }}</small>
                                 <input type="range"
                                        class="slider custom-range form-control-sm pull-right"
                                        value="{{ settings.rate.current }}" min="{{ settings.rate.min }}"
@@ -81,7 +73,7 @@
                             <p class="card-subtitle mb-2 text-muted">RGB Values</p>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <label>R: </label><small>{{ settings.red.current }}</small>
+                                    <label>R:</label><small> {{ settings.red.current }}</small>
                                     <input type="range"
                                            name="r"
                                            class="slider red-s custom-range form-control-sm pull-right success"
@@ -91,7 +83,7 @@
                                            id="r">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>G: </label><small>{{ settings.green.current }}</small>
+                                    <label>G: </label><small> {{ settings.green.current }}</small>
                                     <input type="range"
                                            name="g"
                                            class="slider green-s custom-range form-control-sm pull-right"
@@ -100,7 +92,7 @@
                                            id="g">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>B: </label><small>{{ settings.blue.current }}</small>
+                                    <label>B: </label><small> {{ settings.blue.current }}</small>
                                     <input type="range"
                                            name="b"
                                            class="slider blue-s custom-range form-control-sm pull-right"
@@ -110,7 +102,7 @@
                                            id="b">
                                 </div>
                                 <div class="col-md-12">
-                                    <label>Alpha: </label><small>{{ settings.alpha.current }}</small>
+                                    <label>Alpha: </label><small> {{ settings.alpha.current }}</small>
                                     <input type="range"
                                            name="a"
                                            class="slider custom-range form-control-sm pull-right"
@@ -126,7 +118,8 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-text">
-                            Lorem Ispem Text here
+
+                            <p style="margin-bottom:5px;">Check out more about my projects here</p>
                         </div>
                         <a href="https://github.com/nicofirst1" class="card-link btn btn-outline-success"><i class="fa fa-github"> GitHub</i></a>
                         <a href="https://www.linkedin.com/in/nicol%C3%B2-brandizzi-04091b153/" class="card-link btn btn-outline-primary"><i class="fa fa-linkedin"></i>
