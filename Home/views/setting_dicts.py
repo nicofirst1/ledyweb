@@ -74,7 +74,6 @@ def parse_settings(local_db):
             current=rgba['a'],
         ),
     )
-    print(settings)
     return settings
 
 

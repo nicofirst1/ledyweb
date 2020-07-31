@@ -50,7 +50,7 @@ class FireView(metaclass=Singleton):
     def process_request(self, request):
         values = request.GET.dict()
         print(f"Values recived : {values}")
-        a = 1
+        self.fbc.check_diff(values)
         self.update_settings()
 
 

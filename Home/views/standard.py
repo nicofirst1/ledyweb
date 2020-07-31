@@ -32,9 +32,9 @@ def index(request):
 
 
 def render_setting(request):
-    django_logger.debug(f"Request in render_settings:\n{request.GET}")
+    print(f"Request in render_settings:\n{request.GET}")
 
-    pattern = request.GET.get('pattern', '')
+    pattern = request.GET.get('cur_pattern', '')
     additional_settings = get_val_from_env('ADDITIONAL_SETTINGS')
     additional_settings = list(additional_settings)
 
