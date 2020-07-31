@@ -14,8 +14,6 @@
     $('.form-control-sm').unbind()
     $('.slider').unbind()
 
-
-
     $(document).ready(function () {
 
 
@@ -67,6 +65,18 @@
 
         }, 100)
 
+
+        function send_value(url, values, is_setting = false) {
+            $.ajax({
+                url: url,
+                type: 'get',
+                success: function (response) {
+                    if (is_setting) {
+                        $('.settings').html(response.value)
+                    }
+                }
+            })
+        }
 
     })
 </script>

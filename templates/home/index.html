@@ -140,18 +140,5 @@
 </div>
 {% block main %}{% endblock %}
 {% include 'home/scripts.html' %}
-<script>
-    function send_value(url, values, is_setting = false) {
-        $.ajax({
-            url: url,
-            type: 'get',
-            success: function (response) {
-                if (is_setting) {
-                    $('.settings').html(response.value)
-                }
-            }
-        })
-    }
-</script>
 </body>
 </html>
