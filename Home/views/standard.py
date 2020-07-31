@@ -10,8 +10,6 @@ from Home.views import FV
 django_logger = getLogger('django_logger')
 
 
-
-
 def get_val_from_env(key_name: str):
     return env(key_name)
 

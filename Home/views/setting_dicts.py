@@ -75,5 +75,3 @@ def parse_settings(local_db):
         ),
     )
     return settings
-
-
