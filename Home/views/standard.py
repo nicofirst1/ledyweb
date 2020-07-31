@@ -22,6 +22,7 @@ def index(request):
     settings = get_val_from_env('SETTINGS')
 
     settings = dict(settings)
+    additional_settings = list(additional_settings)
 
     context = {
         'settings': settings,
@@ -35,6 +36,7 @@ def render_setting(request):
 
     pattern = request.GET.get('pattern', '')
     additional_settings = get_val_from_env('ADDITIONAL_SETTINGS')
+    additional_settings = list(additional_settings)
 
     for setting in additional_settings:
         if setting['Name'].__contains__(pattern):

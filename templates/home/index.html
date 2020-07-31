@@ -153,7 +153,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link disabled" href="javascript:;"><h4>LEDyPi</h4></a>
+            <a class="nav-link disabled" href="javascript:;"><h4>Ledypi</h4></a>
         </li>
 
     </ul>
@@ -167,9 +167,8 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <label></label>
-                                <select data-url="{% url 'render_settings' %}" name="pattern" id="pattern-picker"
+                                <select data-url="{% url 'render_settings' %}" name="cur_pattern" id="cur_pattern"
                                         class="form-control-sm">
-                                    <option value="">{{ settings.cur_pattern }}</option>
                                     {% for option in drop_down %}
                                         <option value="{{ option.Name }}">{{ option.Name }}</option>
                                     {% endfor %}
@@ -181,8 +180,8 @@
                                        class="slider custom-range form-control-sm pull-right"
                                        value="{{ settings.rate.current }}" min="{{ settings.rate.min }}"
                                        max="{{ settings.rate.max }}"
-                                       id="rateSlider"
-                                       name="rateSlider"
+                                       id="rate"
+                                       name="rate"
                                 >
                             </div>
                         </div>
@@ -208,40 +207,40 @@
                                 <div class="col-md-12">
                                     <label>R: </label><small>{{ settings.red.current }}</small>
                                     <input type="range"
-                                           name="red"
+                                           name="r"
                                            class="slider red-s custom-range form-control-sm pull-right success"
                                            value="{{ settings.red.current }}"
                                            min="{{ settings.red.min }}"
                                            max="{{ settings.red.max }}"
-                                           id="rSlider">
+                                           id="r">
                                 </div>
                                 <div class="col-md-12">
                                     <label>G: </label><small>{{ settings.green.current }}</small>
                                     <input type="range"
-                                           name="green"
+                                           name="g"
                                            class="slider green-s custom-range form-control-sm pull-right"
                                            value="{{ settings.green.current }}" min="{{ settings.green.min }}"
                                            max="{{ settings.green.max }}"
-                                           id="gSlider">
+                                           id="g">
                                 </div>
                                 <div class="col-md-12">
                                     <label>B: </label><small>{{ settings.blue.current }}</small>
                                     <input type="range"
-                                           name="blue"
+                                           name="b"
                                            class="slider blue-s custom-range form-control-sm pull-right"
                                            value="{{ settings.blue.current }}"
                                            min="{{ settings.blue.min }}"
                                            max="{{ settings.blue.max }}"
-                                           id="bSlider">
+                                           id="b">
                                 </div>
                                 <div class="col-md-12">
                                     <label>Alpha: </label><small>{{ settings.alpha.current }}</small>
                                     <input type="range"
-                                           name="alpha"
+                                           name="a"
                                            class="slider custom-range form-control-sm pull-right"
                                            value="{{ settings.alpha.current }}" min="{{ settings.alpha.min }}"
                                            max="{{ settings.alpha.max }}"
-                                           id="aSlider">
+                                           id="a">
                                 </div>
                             </div>
                         </div>

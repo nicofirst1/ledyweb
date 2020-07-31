@@ -22,7 +22,7 @@
                     name: inp.attr('name'),
                     value: inp.val()
                 }
-                if (inp.attr('id').includes('pattern-picker')) {
+                if (inp.attr('id').includes('cur_pattern')) {
                     let url = inp.attr('data-url')
                     url += '?' + form.serialize()
                     send_value(url, [], true)
