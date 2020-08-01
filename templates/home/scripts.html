@@ -59,6 +59,13 @@
                 }
             })
 
+            $('.slider').on('input', function () {
+                let slider = $(this)
+                let value = slider.val()
+                slider.siblings('small').html(value)
+
+            })
+
 
         }, 10)
 
