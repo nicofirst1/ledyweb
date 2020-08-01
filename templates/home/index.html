@@ -22,9 +22,17 @@
 
 <body>
 <div class="container">
-    <ul class="nav justify-content-center">
-            <a class="nav-link disabled" ><h1>LedyPi</h1></a>
-    </ul>
+
+    <div class="topnav">
+        <a class="active" href="https://github.com/nicofirst1/ledypi">•GitHub Repo</a>
+        <a href="https://youtu.be/k1sSvwABXCE">•Android Tutorial</a>
+    </div>
+    
+    <div style="text-align:center">
+        <span style="font-size: 250%">LedyPi  </span>
+        <img style="vertical-align:middle" src="{% static 'home/logo.png' %}" height="125px" >
+    </div>
+
     <form class="my-form" method="get" action="{% url 'get_form_values' %}">
         <div class="row justify-content-center">
 
@@ -42,7 +50,7 @@
                                 </select>
                             </div>
                             <div class="col-md-7">
-                                <label>Delay: </label><small> {{ settings.rate.current }}</small>
+                                <label>Delay: </label><small>  {{ settings.rate.current }}</small>
                                 <input type="range"
                                        class="slider custom-range form-control-sm pull-right"
                                        value="{{ settings.rate.current }}" min="{{ settings.rate.min }}"
