@@ -22,10 +22,10 @@ def parse_additional_settings(pattern_attributes):
         if any(["__" in elem for elem in list(attrs.keys())]):
             # get both key and hidden one
             hidden_k = [elem for elem in list(attrs.keys()) if "_" in elem][0]
-            k = hidden_k.strip("_")
+            k = hidden_k.strip("__")
             # add inputs
             inp = dict(
-                type=list,
+                type="list",
                 initial_value=attrs[k],
                 label=k,
                 options=attrs[hidden_k]
