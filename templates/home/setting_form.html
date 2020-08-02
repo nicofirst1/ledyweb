@@ -1,54 +1,59 @@
+{% if inputs != "NA" %}
+
 <div class="card-body">
     <h5 class="card-title">{{ Name }} Settings</h5>
     <div class="card-text">
         <div class="row ">
             {% for input in inputs %}
-                <div class="col-md-12">
-                    <label>{{ input.label }}: </label>
-                    {% if input.type == "slider" %}
-                        <small>{{ input.initial_value }}</small>
-                        <input type="range"
-                               class="slider custom-range form-control-sm pull-right success"
-                               value="{{ input.initial_value }}"
-                               min="{{ input.min }}"
-                               max="{{ input.max }}"
-                               name="{{ input.label }}"
-                               id="{{ input.label }}"
-                        >
-                    {% elif input.type == "switch" %}
-                        <label class="switch">
-                            <input class="switch_control"
-                                   name="{{ input.label }}"
-                                   id="{{ input.label }}"
-                                   type="checkbox"
-                                   {% if input.initial_value %}checked{% endif %}>
-                            <span class="slider-1 round"></span>
-                            <input id='{{ input.label }}_hidden' type='hidden' value='false' name="{{ input.label }}">
+            <div class="col-md-12">
+                <label>{{ input.label }}: </label>
+                {% if input.type == "slider" %}
+                <small>{{ input.initial_value }}</small>
+                <input type="range"
+                       class="slider custom-range form-control-sm pull-right success"
+                       value="{{ input.initial_value }}"
+                       min="{{ input.min }}"
+                       max="{{ input.max }}"
+                       name="{{ input.label }}"
+                       id="{{ input.label }}"
+                >
+                {% elif input.type == "switch" %}
+                <label class="switch">
+                    <input class="switch_control"
+                           name="{{ input.label }}"
+                           id="{{ input.label }}"
+                           type="checkbox"
+                           {% if input.initial_value %}checked{% endif %}>
+                    <span class="slider-1 round"></span>
+                    <input id='{{ input.label }}_hidden' type='hidden' value='false' name="{{ input.label }}">
 
-                        </label>
-                    {% elif input.type == "list" %}
-                    <div class="col-md-3">
-                        <label></label>
-                        <select name="{{ input.label }}" id="{{ input.label }}"
-                                class="form-control-sm">
-                            {% for option in input.choices %}
-                            <option value="{{ option }}">{{ option }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    {% elif input.type == "empty" %}
-                    <div></div>
-                    {% else %}
-                        <input type="text"
-                               class="form-control-sm"
-                               name="{{ input.label }}"
-                               value="{{ input.initial_value }}"
-                               id="{{ input.label }}">
-                    {% endif %}
+                </label>
+                {% elif input.type == "list" %}
+                <div class="col-md-3">
+                    <label></label>
+                    <select name="{{ input.label }}" id="{{ input.label }}"
+                            class="form-control-sm">
+                        {% for option in input.choices %}
+                        <option value="{{ option }}">{{ option }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
+                {% elif input.type == "string" %}
+                <input type="text"
+                       class="form-control-sm"
+                       name="{{ input.label }}"
+                       value="{{ input.initial_value }}"
+                       id="{{ input.label }}">
+
+                {% else %}
+                input type not recognized
+                {% endif %}
+
+            </div>
             {% endfor %}
         </div>
     </div>
-
 </div>
+{% endif %}
+
 {% include 'home/scripts.html' %}

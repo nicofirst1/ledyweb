@@ -14,7 +14,7 @@ def parse_additional_settings(pattern_attributes):
             inp = dict(
                 type="empty",
             )
-            st['inputs'].append(inp)
+            st['inputs']="NA"
             # remove keys from dict
             attrs = {}
 
