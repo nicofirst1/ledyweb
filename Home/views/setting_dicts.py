@@ -41,7 +41,7 @@ def parse_additional_settings(pattern_attributes):
             if isinstance(v, bool):
                 inp['type'] = 'switch'
 
-            elif isinstance(v, int):
+            elif isinstance(v, int) or isinstance(v, float):
                 inp['type'] = 'slider'
                 inp['max'] = 100
                 inp['min'] = 0

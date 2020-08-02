@@ -1,3 +1,4 @@
+import functools
 import os
 
 from Home.views.setting_dicts import parse_settings, parse_additional_settings
@@ -13,10 +14,19 @@ class Singleton(type):
         return class_._instances[class_]
 
 
+
+
 class FireView(metaclass=Singleton):
 
     def __init__(self):
         self.fbc = None
+
+    def tracker(self):
+
+        self.update_settings()
+        print("updated")
+        # todo: add call to renderer
+        a=2
 
     def update_settings(self):
         """
@@ -41,7 +51,7 @@ class FireView(metaclass=Singleton):
         :return:
         """
         self.fbc = FireBaseConnector(credential_path=options['credential_path'], database_url=options['databaseURL'],
-                                     debug=options['debug'])
+                                     debug=options['debug'], tracker=self.tracker)
         # update env settings for render
         self.update_settings()
         # start firebase
