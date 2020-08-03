@@ -33,7 +33,7 @@
                     <label></label>
                     <select name="{{ input.label }}" id="{{ input.label }}"
                             class="form-control-sm">
-                        {% for option in input.choices %}
+                        {% for option in input.options %}
                         <option value="{{ option }}">{{ option }}</option>
                         {% endfor %}
                     </select>

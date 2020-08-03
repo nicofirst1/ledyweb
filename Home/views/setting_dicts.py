@@ -11,29 +11,11 @@ def parse_additional_settings(pattern_attributes):
 
         # empty value not shown
         if attrs == "NA":
-            inp = dict(
-                type="empty",
-            )
             st['inputs']="NA"
             # remove keys from dict
             attrs = {}
 
-        # check if there is a hidden property which is indicative of a multichoice
-        if any(["__" in elem for elem in list(attrs.keys())]):
-            # get both key and hidden one
-            hidden_k = [elem for elem in list(attrs.keys()) if "_" in elem][0]
-            k = hidden_k.strip("__")
-            # add inputs
-            inp = dict(
-                type="list",
-                initial_value=attrs[k],
-                label=k,
-                options=attrs[hidden_k]
-            )
-            st['inputs'].append(inp)
-            # remove keys from dict
-            attrs.pop(k)
-            attrs.pop(hidden_k)
+
 
         for k, v in attrs.items():
 
@@ -56,6 +38,10 @@ def parse_additional_settings(pattern_attributes):
 
             elif tp== str:
                 inp['type'] = "string"
+
+            elif tp ==list:
+                inp['type'] = "list"
+                inp['options'] = v['options']
 
             st['inputs'].append(inp)
 
