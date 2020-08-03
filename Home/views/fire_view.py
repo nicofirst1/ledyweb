@@ -26,7 +26,6 @@ class FireView(metaclass=Singleton):
         self.update_settings()
         print("updated")
         # todo: add call to renderer
-        a=2
 
     def update_settings(self):
         """

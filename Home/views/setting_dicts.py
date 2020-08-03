@@ -36,21 +36,26 @@ def parse_additional_settings(pattern_attributes):
             attrs.pop(hidden_k)
 
         for k, v in attrs.items():
-            inp = {}
 
-            if isinstance(v, bool):
+            # set the initial value and labels
+            inp = dict(
+                initial_value=v['value'],
+                label=v['name']
+            )
+
+            # check the type
+            tp=eval(v['type'])
+
+            if tp== bool:
                 inp['type'] = 'switch'
 
-            elif isinstance(v, int) or isinstance(v, float):
+            elif tp== int or tp== float:
                 inp['type'] = 'slider'
                 inp['max'] = 100
                 inp['min'] = 0
 
-            elif isinstance(v, str):
+            elif tp== str:
                 inp['type'] = "string"
-
-            inp['initial_value'] = v
-            inp['label'] = k
 
             st['inputs'].append(inp)
 
