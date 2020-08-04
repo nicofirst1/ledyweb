@@ -66,7 +66,7 @@ def parse_settings(local_db):
         cur_pattern=cur_pattern,
         rate=dict(
             min=0,
-            max=250,
+            max=100,
             current=rate,
         ),
         random_colors=random_colors,
