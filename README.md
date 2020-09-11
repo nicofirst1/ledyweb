@@ -9,7 +9,7 @@ To install the necessary dependencies use:
 
 Run on the default port (8000) with:
 
-```python3 manage.py start```
+```python3 manage.py start path/2/firebase_credential.json```
 
 You'll find the webpage on [localhost](http://127.0.0.1:8000)
 
