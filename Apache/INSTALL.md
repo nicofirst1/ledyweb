@@ -1,0 +1,1 @@
+- put `umask 001` in `/etc/init.d/apache2`
