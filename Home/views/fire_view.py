@@ -16,7 +16,6 @@ fileHandler = logging.FileHandler(f"{cur_dir}/log.log")
 fileHandler.setFormatter(formatter)
 fire_view_logger.addHandler(fileHandler)
 fire_view_logger.setLevel(logging.DEBUG)
-fire_view_logger.debug("Started wsgi")
 
 
 class Singleton(type):
