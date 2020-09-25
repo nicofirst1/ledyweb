@@ -10,14 +10,14 @@ https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/
 import os
 import pathlib
 
+os.environ['MPLCONFIGDIR'] = '/tmp/'
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ledyweb.settings')
+
 from Home.views import FV
 from ledyweb import wsgi_logger
 from django.conf import settings
 from django.core.wsgi import get_wsgi_application
 from django.contrib.staticfiles.handlers import StaticFilesHandler
-
-os.environ['MPLCONFIGDIR'] = '/tmp/'
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ledyweb.settings')
 
 
 credential_path = str(pathlib.Path(__file__).parent.absolute())
