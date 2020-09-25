@@ -29,13 +29,14 @@
 
                 </label>
                 {% elif input.type == "list" %}
-                <div class="col-md-3">
+                <div class="col-md-1">
                     <label></label>
                     <select name="{{ input.label }}" id="{{ input.label }}"
                             class="form-control-sm">
-                        {% for option in input.options %}
-                        <option value="{{ option }}">{{ option }}</option>
-                        {% endfor %}
+                            {% for option in input.options %}
+                            <option value="{{ option }}">{{ option }}</option>
+                            {% endfor %}
+                            <option value="{{ input.initial_value }}" selected>{{ input.initial_value }}</option>
                     </select>
                 </div>
                 {% elif input.type == "string" %}
